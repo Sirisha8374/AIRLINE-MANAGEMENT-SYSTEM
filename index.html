@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyHigh Airlines | Booking System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="brand">SkyHigh Airlines</div>
+        <div class="flight-route" id="flight-route">
+            <!-- Populated by JS -->
+        </div>
+    </header>
+
+    <main>
+        <!-- Left Panel: Booking Form -->
+        <aside>
+            <div class="card">
+                <h2>New Booking</h2>
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label>Passenger Name</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="phone" required placeholder="+1 234 567 8900">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label>Gender</label>
+                                <select id="gender">
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Meal</label>
+                                <select id="meal">
+                                    <option value="3">No Meal</option>
+                                    <option value="0">Vegetarian</option>
+                                    <option value="1">Non-Veg</option>
+                                    <option value="2">Vegan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Luggage (kg)</label>
+                        <input type="number" id="luggage" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="wheelchair"> Wheelchair Assistance
+                        </label>
+                    </div>
+                    
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                            <span style="color:var(--text-muted)">Selected Seat</span>
+                            <span id="selected-seat-display" style="font-weight:600">-</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                            <span style="color:var(--text-muted)">Base Fare</span>
+                            <span id="base-price">$0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; font-size:1.1rem; font-weight:700; color:var(--primary); margin-top:0.5rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:0.5rem;">
+                            <span>Total</span>
+                            <span id="total-price">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <select id="payment">
+                            <option value="0">Credit Card</option>
+                            <option value="1">Debit Card</option>
+                            <option value="2">UPI</option>
+                            <option value="3">Cash</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Confirm Booking</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- Right Panel: Visuals -->
+        <section>
+            <!-- Stats -->
+            <div class="card">
+                <h2>Flight Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-val" id="stat-rev">$0</div>
+                        <div class="stat-label">Total Revenue</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-val" id="stat-occ">0%</div>
+                        <div class="stat-label">Occupancy</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seat Map -->
+            <div class="card">
+                <h2>Seat Map</h2>
+                <div class="plane-body">
+                    <div id="seat-map" class="seat-grid">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+                <div class="seat-legend">
+                    <div class="legend-item"><div class="dot" style="background:#334155"></div> Economy</div>
+                    <div class="legend-item"><div class="dot" style="background:#475569"></div> Business</div>
+                    <div class="legend-item"><div class="dot" style="background:#64748b"></div> First Class</div>
+                    <div class="legend-item"><div class="dot" style="background:#ef4444"></div> Booked</div>
+                    <div class="legend-item"><div class="dot" style="background:#10b981"></div> Selected</div>
+                </div>
+            </div>
+
+            <!-- Recent Bookings -->
+            <div class="card">
+                <h2>Recent Bookings</h2>
+                <div class="booking-list" id="booking-list">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h2 style="justify-content:center">Success!</h2>
+            <p id="success-msg" style="color:var(--text-muted); margin-bottom:1.5rem"></p>
+            <button class="btn-primary" onclick="closeModal()">Continue</button>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
